@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>my-blog-test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../index.css">
+</head>
+
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <a href="/" class="go_back"><i class="fas fa-arrow-left"></i></a>
+    <div id="background"></div>
+    <table id="profile_blog">
+        <tbody>
+            <tr>
+                <td style="width:8vw;">
+                    <div id="profile_img_blog"></div>
+                </td>
+                <td style="width:52vw;">
+                    <div id="username_blog"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="blog-display">
+        <h1 id="blog_title">Bonjour GitFolio</h1>
+        <h2 id="blog_sub_title">Voici mon premier article !</h2>
+        <div id="blog">
+            <img src="https://images.unsplash.com/photo-1553748024-d1b27fb3f960?w=1450">
+            <p>
+                Aujourd'hui, j'installe et je découvre GitFolio, un petit outils bien sympa pour</b> Crée son portfolio à partir de son profil Github.
+                </b> Mais aussi à crée des petits articles de blog visiblement. <u><i>Vive GitFolio.</i></u></p>
+            <p>
+                L'outil est d'une simplicité folle, et le créateur maintiens vachement bien son projet. <span>Si je ne dis pas de bêtises, c'est fait en nodejs !</span> Note à moi même : Je dois apprendre le nodejs !
+            </p>
+            <img src="https://images.unsplash.com/photo-1556814278-8906c7d3a05f?w=1050">
+            <p>
+                Voilà déjà la fin de mon premier Article de blog ? Aujourd'hui j'ai du Lua / Love2D sur la planche ! See you soon *nobody ?*
+            </p>
+        </div>
+    </div>
+    <div id="footer_blog">
+        <a href="https://github.com/imfunniee" target="_blank">made on earth by a human</a>
+    </div>
+    <script type="text/javascript">
+        setTimeout(function() {
+            document.getElementById("loading").classList.add("animated");
+            document.getElementById("loading").classList.add("fadeOut");
+            setTimeout(function() {
+                document.getElementById("loading").classList.remove("animated");
+                document.getElementById("loading").classList.remove("fadeOut");
+                document.getElementById("loading").style.display = "none";
+            }, 800);
+        }, 1500);
+        $.getJSON("../../config.json", function(user) {
+            var icon = document.createElement("link");
+            icon.setAttribute("rel", "icon");
+            icon.setAttribute("href", user[0].userimg);
+            icon.setAttribute("type", "image/png");
+            document.getElementsByTagName("head")[0].appendChild(icon);
+            document.getElementById("profile_img_blog").style.background = `url('${user[0].userimg}') center center`;
+            document.getElementById("username_blog").innerHTML = `<spanstyle="display:${user[0].name == null || !user[0].name ? 'none' : 'block'};">${user[0].name}</span><br>@${user[0].username}<b id="blog_time"></b>`;
+        });
+    </script>
+
+</body>
+
+</html>
